@@ -12,7 +12,7 @@ export default class ContactList extends Component {
                     {contact.name}: {contact.number}
                     <button
                         type="button"
-                        key={contact.id}
+                        id={contact.id}
                         onClick={handleDelete}
                     >
                         Delete</button>

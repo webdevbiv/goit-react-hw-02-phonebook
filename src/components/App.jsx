@@ -27,7 +27,6 @@ export default class App extends Component {
   handleContactDelete = (e) => {
     const id = e.target.id
     const contacts = this.state.contacts
-    console.log(id);
     this.setState({ contacts: contacts.filter(item => item.id !== id) })
   }
 
@@ -38,8 +37,10 @@ export default class App extends Component {
           <h1>Phonebook</h1>
           <ContactForm onSubmit={this.handleContactSubmit} />
           <h2>Contacts</h2>
-          {/* <Filter /> */}
-          <ContactList contacts={this.state.contacts} handleDelete={this.handleContactDelete} />
+          <Filter />
+          <ContactList
+            contacts={this.state.contacts}
+            handleDelete={this.handleContactDelete} />
         </div>
       </>
     )

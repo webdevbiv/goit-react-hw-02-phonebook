@@ -5,12 +5,12 @@ import ContactList from './ContactList/ContactList'
 import Filter from './Filter/Filter'
 
 import { nanoid } from 'nanoid'
-
 export default class App extends Component {
   state = {
     contacts: [],
     filter: ''
   }
+
 
   handleContactSubmit = ({ name, number }) => {
     const contacts = this.state.contacts
@@ -19,13 +19,13 @@ export default class App extends Component {
     }
     else {
       const newContact = { name, number, id: nanoid(5) }
-      this.setState({ contacts: [...contacts, newContact] })
+      this.setState((prev) => ({ contacts: [newContact, ...prev.contacts] }))
     }
   }
 
   handleContactDelete = (id) => {
-    const contacts = this.state.contacts
-    this.setState({ contacts: contacts.filter(item => item.id !== id) })
+    this.setState((prev) => ({ contacts: prev.contacts.filter(item => item.id !== id) }))
+
   }
 
   handleFilterChange = (e) => {
@@ -36,7 +36,7 @@ export default class App extends Component {
   filteredContacts = () => {
     const { contacts, filter } = this.state
     let filteredContacts = contacts
-    filter.length < 0 ?
+    !filter.length ?
       filteredContacts = contacts
       : filteredContacts = contacts.filter(contact => contact.name.toLowerCase().includes(filter.toLowerCase()))
     return filteredContacts

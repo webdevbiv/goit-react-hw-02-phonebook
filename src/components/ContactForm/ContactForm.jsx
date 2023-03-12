@@ -21,13 +21,14 @@ export default class ContactForm extends Component {
         e.preventDefault()
         const contact = this.state
         this.props.onSubmit(contact)
-        this.reset()
+        this.reset(e)
     }
 
-    reset = () => {
+    reset = (e) => {
         this.setState({
             ...INITIAL_STATE
         })
+        e.currentTarget.reset()
     }
 
     render() {

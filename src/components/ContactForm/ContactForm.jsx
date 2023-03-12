@@ -28,7 +28,6 @@ export default class ContactForm extends Component {
         this.setState({
             ...INITIAL_STATE
         })
-        document.getElementById("contact").reset()
     }
 
     render() {

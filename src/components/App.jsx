@@ -35,14 +35,11 @@ export default class App extends Component {
 
   filteredContacts = () => {
     const { contacts, filter } = this.state
-    let filteredContacts = contacts
-    !filter.length ?
-      filteredContacts = contacts
-      : filteredContacts = contacts.filter(contact => contact.name.toLowerCase().includes(filter.toLowerCase()))
-    return filteredContacts
+    return contacts.filter(contact => contact.name.toLowerCase().includes(filter.toLowerCase()))
   }
 
   render() {
+    const { filter, contacts } = this.state
     return (
       <>
         <h1>Phonebook</h1>
@@ -50,7 +47,7 @@ export default class App extends Component {
         <h2>Contacts</h2>
         <Filter onChange={this.handleFilterChange} />
         <ContactList
-          contacts={this.filteredContacts()}
+          contacts={!filter.length ? contacts : this.filteredContacts()}
           onDelete={this.handleContactDelete}
         />
       </>

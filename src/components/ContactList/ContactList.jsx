@@ -1,18 +1,25 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import Button from 'react-bootstrap/Button';
+import ListGroup from 'react-bootstrap/ListGroup';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import s from '../ContactList/ContactList.module.scss'
 function ContactList({ contacts, onDelete }) {
     return (
-        <ul>{contacts.map((contact) => (
-            <li key={contact.id}>
-                {contact.name}: {contact.number}
-                <button
-                    type="button"
-                    onClick={() => onDelete(contact.id)}
+        <ListGroup>
+            {contacts.map((contact) => (
+                <ListGroup.Item
+                    key={contact.id}
+                    className={s.item}
                 >
-                    Delete</button>
-            </li>
-        ))}
-        </ul>
+                    <div>{contact.name}: {contact.number}</div>
+                    <Button variant="primary" type="button"
+                        onClick={() => onDelete(contact.id)}
+                    >
+                        Delete</Button>
+                </ListGroup.Item>
+            ))}
+        </ListGroup>
     )
 }
 

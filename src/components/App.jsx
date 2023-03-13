@@ -7,7 +7,12 @@ import Filter from './Filter/Filter'
 import { nanoid } from 'nanoid'
 export default class App extends Component {
   state = {
-    contacts: [],
+    contacts: [
+      { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
+      { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
+      { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
+      { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
+    ],
     filter: ''
   }
 
@@ -40,16 +45,21 @@ export default class App extends Component {
 
   render() {
     const { filter, contacts } = this.state
+    // console.log(contacts.length);
     return (
       <div className={'container'}>
-        <h1>Phonebook</h1>
+        <h1 className={'title'}>Phonebook</h1>
         <ContactForm onSubmit={this.handleContactSubmit} />
-        <h2>Contacts</h2>
-        <Filter onChange={this.handleFilterChange} />
-        <ContactList
-          contacts={!filter.length ? contacts : this.filteredContacts()}
-          onDelete={this.handleContactDelete}
-        />
+        <h2 className={'title'}>Contacts</h2>
+        {/* {contacts.length > 0 && */}
+        <>
+          <Filter onChange={this.handleFilterChange} />
+          <ContactList
+            contacts={!filter.length ? contacts : this.filteredContacts()}
+            onDelete={this.handleContactDelete}
+          />
+        </>
+        {/* } */}
       </div>
     )
   }

@@ -1,5 +1,8 @@
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
+import Form from 'react-bootstrap/Form'
+import Button from 'react-bootstrap/Button';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const INITIAL_STATE = {
     name: '',
@@ -33,9 +36,10 @@ export default class ContactForm extends Component {
 
     render() {
         return (
-            <form id="contact" onSubmit={this.handleSubmit}>
-                <label> Name
-                    <input
+            <Form id="contact" onSubmit={this.handleSubmit}>
+                <Form.Group className="mb-3" >
+                    <Form.Label> Name </Form.Label>
+                    <Form.Control
                         type="text"
                         name="name"
                         pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
@@ -43,9 +47,10 @@ export default class ContactForm extends Component {
                         required
                         onChange={this.handleChange}
                     />
-                </label>
-                <label> Number
-                    <input
+                </Form.Group>
+                <Form.Group className="mb-3" >
+                    <Form.Label> Number </Form.Label>
+                    <Form.Control
                         type="tel"
                         name="number"
                         pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
@@ -53,9 +58,9 @@ export default class ContactForm extends Component {
                         required
                         onChange={this.handleChange}
                     />
-                </label>
-                <input type="submit" />
-            </form>
+                </Form.Group>
+                <Button variant="primary" type="submit">Submit</Button>
+            </Form>
         )
     }
 }

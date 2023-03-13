@@ -41,7 +41,7 @@ export default class App extends Component {
   render() {
     const { filter, contacts } = this.state
     return (
-      <>
+      <div className={'container'}>
         <h1>Phonebook</h1>
         <ContactForm onSubmit={this.handleContactSubmit} />
         <h2>Contacts</h2>
@@ -50,7 +50,7 @@ export default class App extends Component {
           contacts={!filter.length ? contacts : this.filteredContacts()}
           onDelete={this.handleContactDelete}
         />
-      </>
+      </div>
     )
   }
 }

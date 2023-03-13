@@ -1,4 +1,10 @@
-@import-normalize; /* bring in normalize.css styles */
+@import "~bootstrap/scss/bootstrap";
+
+.container {
+  width: 350px;
+  margin-left: auto;
+  margin-right: auto;
+}
 
 body {
   margin: 0;

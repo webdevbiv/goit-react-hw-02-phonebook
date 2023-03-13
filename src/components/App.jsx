@@ -1,8 +1,9 @@
-// import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 import ContactForm from './ContactForm/ContactForm'
 import ContactList from './ContactList/ContactList'
 import Filter from './Filter/Filter'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import { nanoid } from 'nanoid'
 export default class App extends Component {
@@ -20,7 +21,17 @@ export default class App extends Component {
   handleContactSubmit = ({ name, number }) => {
     const contacts = this.state.contacts
     if (contacts.some(contact => contact.name.toLowerCase() === name.toLowerCase())) {
-      alert(`${name} is already in the contacts.`)
+      // alert(`${name} is already in the contacts.`);
+      toast.warn(`🦄 ${name} is already in the contacts.`, {
+        position: "top-center",
+        autoClose: false,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: false,
+        progress: undefined,
+        theme: "light",
+      });
     }
     else {
       const newContact = { name, number, id: nanoid(5) }
@@ -48,10 +59,19 @@ export default class App extends Component {
     // console.log(contacts.length);
     return (
       <div className={'container'}>
+        <ToastContainer
+          position="top-center"
+          autoClose={false}
+          newestOnTop
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable={false}
+          theme="light"
+        />
         <h1 className={'title'}>Phonebook</h1>
         <ContactForm onSubmit={this.handleContactSubmit} />
         <h2 className={'title'}>Contacts</h2>
-        {/* {contacts.length > 0 && */}
         <>
           <Filter onChange={this.handleFilterChange} />
           <ContactList
@@ -59,7 +79,6 @@ export default class App extends Component {
             onDelete={this.handleContactDelete}
           />
         </>
-        {/* } */}
       </div>
     )
   }
